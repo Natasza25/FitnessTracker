@@ -1,7 +1,6 @@
 package pl.wsb.fitnesstracker.event;
 
 import jakarta.persistence.*;
-import jdk.jfr.Event;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +8,7 @@ import pl.wsb.fitnesstracker.user.api.User;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user_events")
+@Table(name = "user_event")
 @Getter
 @Setter
 @NoArgsConstructor
