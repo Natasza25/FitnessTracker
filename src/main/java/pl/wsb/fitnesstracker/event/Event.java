@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "events")
+@Table(name = "event")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,4 +23,5 @@ public class Event {
     private LocalDateTime endTime;
     private String country;
     private String city;
+
 }
