@@ -21,6 +21,8 @@ class UserController {
     private final UserProvider userProvider;
     private final UserMapper userMapper;
 
+    //To pozwala na dodanie użytkownika
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto addUser(@RequestBody UserDto userDto) {
@@ -36,6 +38,8 @@ class UserController {
                 .toList();
     }
 
+    //Tutaj odnośnie "wyrzucania" uproszczonej listy użytkowników, samo ID, imię i nazwisko.
+
     @GetMapping("/simple")
     public List<UserDto> getSimpleUsers() {
         return this.userProvider.findAllUsers().stream()
@@ -43,6 +47,8 @@ class UserController {
                 .map(dto -> new UserDto(dto.id(), dto.firstName(), dto.lastName(), null, null))
                 .toList();
     }
+
+    //Tutaj wyszukiwanie za pomocą ID
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
@@ -52,6 +58,8 @@ class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    //Tutaj wyszukiwanie za pomocą e-mail
+
     @GetMapping("/email")
     public List<UserDto> getUserByEmailFragment(@RequestParam String email) {
         return userProvider.findUsersByEmailFragment(email).stream()
@@ -60,6 +68,8 @@ class UserController {
                 .toList();
     }
 
+    //Pozwala na znalezienie użytkownika starszego, niż ustalona data
+
     @GetMapping("/older/{date}")
     public List<UserDto> getUsersOlderThan(@PathVariable LocalDate date) {
         return userProvider.findUsersBornBefore(date).stream()
@@ -67,12 +77,16 @@ class UserController {
                 .toList();
     }
 
+    //Pozwala na uaktualnienie danych użytkownika
+
     @PutMapping("/{id}")
     public UserDto updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
         User userUpdateData = userMapper.toEntity(userDto);
         User updatedUser = userService.updateUser(id, userUpdateData);
         return userMapper.toUserDto(updatedUser);
     }
+
+    //To pozwala na usunięcie użytkownika
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

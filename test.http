@@ -1,0 +1,21 @@
+### Dodanie użytkownika 1
+POST http://localhost:8080/v1/users
+Content-Type: application/json
+
+{
+  "firstName": "Jan",
+  "lastName": "Kowalski",
+  "birthdate": "1995-05-15",
+  "email": "jan.kowalski@gmail.com"
+}
+
+### Dodanie użytkownika 2
+POST http://localhost:8080/v1/users
+Content-Type: application/json
+
+{
+  "firstName": "Anna",
+  "lastName": "Nowak",
+  "birthdate": "2010-11-20",
+  "email": "anna.nowak@wp.pl"
+}
